@@ -13,11 +13,14 @@ import java.util.Scanner;
 public class Main {
   
   public static Scanner scanner = new Scanner(System.in);
-  private static List<Pessoa> pessoasAceleradora = new ArrayList<>();
+  private static List<Pessoa> pessoasAceleradora = new ArrayList<>(30);
   
 
   public static void main(String[] args) {
     
+
+    while(true){
+      
     System.out.println("Para aluna digite 1, para mentor digite 2: ");
     int opcao = scanner.nextInt();
 
@@ -28,12 +31,14 @@ public class Main {
     System.out.println("Voce escolheu para criar um Aluno : ");
     criaAluna();
     break;
+    case 3 : percorrePessoas();
+    break;
     default:
     System.out.println("Voce terminou sua inscrição.");
     
 
   }
-
+  }
   }
 
   private static void criaMentor() {
@@ -74,11 +79,22 @@ public class Main {
     Matricula matricula = new Matricula(numero, dataDeInicio,curso);
     
     Aluna aluna = new Aluna(nomeDaPessoa, dataDeNascimento, cadastroPessoaFisica, semestreTurma, cadastroEstagio, matricula);
-
+    pessoasAceleradora.add(aluna);
     System.out.println(" Nome da aluna : " + aluna.getNome() + " \n Data de nascimento : " + aluna.getDataDeNascimento() + "\n Cadastro de pessoa fisica : " + aluna.getCpf() 
     + "\n Semestre da turma : " + aluna.getSemestreTurma() + "\n Cadastro do estagio : " + aluna.getCadastroEstagio() + "\n Matricula numero : " + matricula.getNumero() + 
     "\n Matricula data de inicio : " + matricula.getDataDeInicio() + "\n Nome do curso : " + curso.getNomeCurso() + "\n Faculdade : " + curso.getFaculdade() + "\n Nota do curso : " + curso.getNotaINEP() );
 
   }
+
+  public static void percorrePessoas(){
+  for (int i=0; i<pessoasAceleradora.size(); i++){
+    String pessoaNome = pessoasAceleradora.get(i).getNome();
+    String cpfUsado = pessoasAceleradora.get(i).getCpf();
+    System.out.println(pessoaNome);
+    System.out.println(cpfUsado);
+
+  }
+  }
+
 
 }

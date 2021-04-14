@@ -20,6 +20,7 @@ public class Curso {
   }
 
   public double getNotaINEP() {
+    
     return notaINEP;
   }
 }

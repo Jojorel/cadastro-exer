@@ -12,10 +12,25 @@ public class Aluna extends Pessoa {
     this.matricula = matricula;
   }
 
+ 
+  public String todosOsGetters(){
+    getSemestreTurma();
+    getCadastroEstagio();
+    getDataDeNascimento();
+    getMatricula();
+    getNome();
+    getCpf();
+
+    return todosOsGetters();
+
+  }
+
   
+
 
   public String getSemestreTurma() {
     return this.semestreTurma;
+    
   }
 
   public String getCadastroEstagio() {
@@ -24,7 +39,8 @@ public class Aluna extends Pessoa {
 
   public Matricula getMatricula() {
     return this.matricula;
+    
+  
   }
-
 
 }

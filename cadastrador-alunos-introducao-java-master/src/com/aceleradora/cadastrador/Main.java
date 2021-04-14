@@ -14,14 +14,14 @@ public class Main {
   
   public static Scanner scanner = new Scanner(System.in);
   private static List<Pessoa> pessoasAceleradora = new ArrayList<>(30);
-  
-
+  private static List<Aluna> alunasaceleradora = new ArrayList<>(30);
+ 
   public static void main(String[] args) {
     
 
     while(true){
       
-    System.out.println("Para aluna digite 1, para mentor digite 2: ");
+    System.out.println("1- Para aluna digite , 2- para mentor digite  , 3- Dados de todas as pessoas , 4- Procure o nome da pessoa no cadastro ");
     int opcao = scanner.nextInt();
 
   switch (opcao){
@@ -32,6 +32,8 @@ public class Main {
     criaAluna();
     break;
     case 3 : percorrePessoas();
+    break;
+    case 4 : retornaNomeAluna();
     break;
     default:
     System.out.println("Voce terminou sua inscrição.");
@@ -79,22 +81,61 @@ public class Main {
     Matricula matricula = new Matricula(numero, dataDeInicio,curso);
     
     Aluna aluna = new Aluna(nomeDaPessoa, dataDeNascimento, cadastroPessoaFisica, semestreTurma, cadastroEstagio, matricula);
-    pessoasAceleradora.add(aluna);
-    System.out.println(" Nome da aluna : " + aluna.getNome() + " \n Data de nascimento : " + aluna.getDataDeNascimento() + "\n Cadastro de pessoa fisica : " + aluna.getCpf() 
-    + "\n Semestre da turma : " + aluna.getSemestreTurma() + "\n Cadastro do estagio : " + aluna.getCadastroEstagio() + "\n Matricula numero : " + matricula.getNumero() + 
-    "\n Matricula data de inicio : " + matricula.getDataDeInicio() + "\n Nome do curso : " + curso.getNomeCurso() + "\n Faculdade : " + curso.getFaculdade() + "\n Nota do curso : " + curso.getNotaINEP() );
+    alunasaceleradora.add(aluna);
+    
+    
+    
 
   }
 
   public static void percorrePessoas(){
-  for (int i=0; i<pessoasAceleradora.size(); i++){
-    String pessoaNome = pessoasAceleradora.get(i).getNome();
-    String cpfUsado = pessoasAceleradora.get(i).getCpf();
-    System.out.println(pessoaNome);
-    System.out.println(cpfUsado);
+    for (int i=0; i<alunasaceleradora.size(); i++){
+      Aluna aluna = alunasaceleradora.get(i);
+      Matricula matricula = aluna.getMatricula();
+      Curso curso = matricula.getCurso();
+
+  
+      
+
+      System.out.println(printaInformacoes(aluna,matricula,curso));
+      
+    }
+    }
+
+  public static void retornaNomeAluna(){
+    
+    Scanner teclado = new Scanner(System.in);
+    System.out.println("Digite o nome da Aluna que voce quer encontrar no castro");
+    String nomeDaPessoa = teclado.nextLine();
+
+    boolean achou = false;
+    for (int i=0; i<alunasaceleradora.size(); i++){
+      if (nomeDaPessoa.equals(alunasaceleradora.get(i).getNome())){
+          Aluna aluna = alunasaceleradora.get(i);
+          Matricula matricula = aluna.getMatricula();
+          Curso curso = matricula.getCurso();
+          achou = true;
+          System.out.println(printaInformacoes(aluna,matricula,curso));
+      
+      }
+    }
+    if (achou != true){
+          System.out.println("Nome da Aluna não encontrado !!");
+      } 
+  }
+  
+
+  public static String printaInformacoes(Aluna aluna, Matricula matricula, Curso curso){
+    return (" Nome da aluna : " + aluna.getNome() + " \n Data de nascimento : " + aluna.getDataDeNascimento() + "\n Cadastro de pessoa fisica : " + aluna.getCpf() 
+    + "\n Semestre da turma : " + aluna.getSemestreTurma() + "\n Cadastro do estagio : " + aluna.getCadastroEstagio() + "\n Matricula numero : " + matricula.getNumero() + 
+    "\n Matricula data de inicio : " + matricula.getDataDeInicio() + "\n Nome do curso : " + curso.getNomeCurso() + "\n Faculdade : " + curso.getFaculdade() + "\n Nota do curso : " + curso.getNotaINEP() );
+  }
+    
+ 
+
+
 
   }
-  }
 
 
-}
+

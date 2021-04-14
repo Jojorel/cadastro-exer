@@ -4,11 +4,15 @@ public abstract class Pessoa {
   private String nome;
   private String dataDeNascimento;
   private String cpf;
+  
+  
 
   public Pessoa(String nomeDaPessoa, String nascimento, String cadastroPessoaFisica) {
     this.nome = nomeDaPessoa;
     this.dataDeNascimento = nascimento;
     this.cpf = cadastroPessoaFisica;
+    
+    
   }
 
 
